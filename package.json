@@ -3,12 +3,22 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@emotion/react": "^11.7.0",
+    "@emotion/styled": "^11.6.0",
+    "@mui/material": "^5.2.3",
+    "@stacks/blockchain-api-client": "^0.71.2",
+    "@stacks/connect": "^6.4.0",
+    "@stacks/network": "^3.0.0",
+    "@stacks/profile": "^3.0.0",
+    "@stacks/transactions": "^3.0.0",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
     "react": "^17.0.2",
+    "react-csv-reader": "^3.4.0",
     "react-dom": "^17.0.2",
     "react-scripts": "4.0.3",
+    "react-window": "^1.8.6",
     "web-vitals": "^1.0.1"
   },
   "scripts": {
@@ -34,5 +44,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@stacks/connect-react": "^13.0.0",
+    "jotai": "^1.4.7"
   }
 }
