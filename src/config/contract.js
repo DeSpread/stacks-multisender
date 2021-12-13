@@ -22,7 +22,7 @@ const TEST_CONTRACT = {
 const FUNGIBLE_CONTRACT = {
   contractAddress: 'SP1W7X92JG1BYPKG15KTS6398XN4D4HJP9TTXMQ38',
   contractName: 'multi-send',
-  sendManyFunctionName: 'send-many'
+  sendManyFunctionName: 'multi-send'
 }
 
 const MAIN_CONTRACT = {
