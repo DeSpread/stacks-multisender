@@ -30,6 +30,7 @@ export const useConnect = () => {
     manifestPath: '/manifest.json',
     appDetails: {
       name: 'Send Many',
+      icon: '/logo192.png'
     },
   };
 
