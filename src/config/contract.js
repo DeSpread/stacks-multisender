@@ -35,7 +35,7 @@ const MAIN_CONTRACT = {
     sendManyFunctionName: 'send-many',
     assetAddress: 'SP1WBNM0A4ZVY1GVZMXDPMV831BF0BMHFJK9ZXNRW',
     assetContractName: 'abc-abc-abc',
-    assetName: 'assetName',
+    assetName: 'abc-coin',
     mapper: (recipient) =>{
       return tupleCV({ to: standardPrincipalCV(recipient.address), amount: uintCV(parseInt(recipient.amount) * 1000000), memo: noneCV() });
     },

@@ -59,7 +59,6 @@ export function Send(props) {
     const transferUnit = contract['transferUnit']
 
     const chunk = recipients.length % MAX_SEND_SIZE === 0 ? recipients.length / MAX_SEND_SIZE : parseInt(recipients.length / MAX_SEND_SIZE) + 1;
-    console.log(chunk);
     const chunked = [];
 
     let start = 0
