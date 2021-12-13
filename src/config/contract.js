@@ -1,4 +1,4 @@
-import { StacksTestnet, StacksMainnet } from '@stacks/network';
+import {StacksTestnet, StacksMainnet} from '@stacks/network';
 import {testnet, mainnet} from '../lib/constants'
 import {noneCV, standardPrincipalCV, tupleCV, uintCV} from "@stacks/transactions";
 
@@ -19,43 +19,57 @@ const TEST_CONTRACT = {
   }
 }
 
+const FUNGIBLE_CONTRACT = {
+  contractAddress: 'SP1W7X92JG1BYPKG15KTS6398XN4D4HJP9TTXMQ38',
+  contractName: 'multi-send',
+  sendManyFunctionName: 'send-many'
+}
+
 const MAIN_CONTRACT = {
   STX: {
     contractAddress: 'SP3FBR2AGK5H9QBDH3EEN6DF8EK8JY7RX8QJ5SVTE',
     contractName: 'send-many',
     sendManyFunctionName: 'send-many',
-    mapper: (recipient) =>{
-      return tupleCV({ to: standardPrincipalCV(recipient.address), ustx: uintCV(parseInt(recipient.amount) * 1000000)});
-    },
     transferUnit: 1000000,
   },
-  ABC: {
-    contractAddress: 'SP1WBNM0A4ZVY1GVZMXDPMV831BF0BMHFJK9ZXNRW',
-    contractName: 'abc-abc-abc',
-    sendManyFunctionName: 'send-many',
-    assetAddress: 'SP1WBNM0A4ZVY1GVZMXDPMV831BF0BMHFJK9ZXNRW',
-    assetContractName: 'abc-abc-abc',
-    assetName: 'abc-coin',
-    mapper: (recipient) =>{
-      return tupleCV({ to: standardPrincipalCV(recipient.address), amount: uintCV(parseInt(recipient.amount) * 1000000), memo: noneCV() });
-    },
-    transferUnit: 1000000,
+  DIKO: {
+    ...FUNGIBLE_CONTRACT,
+    assetAddress: 'SP2C2YFP12AJZB4MABJBAJ55XECVS7E4PMMZ89YZR',
+    assetContractName: 'arkadiko-token',
+    assetName: 'diko',
+    transferUnit: 1000000
+  },
+  XBTC: {
+    ...FUNGIBLE_CONTRACT,
+    assetAddress: 'SP3DX3H4FEYZJZ586MFBS25ZW3HZDMEW92260R2PR',
+    assetContractName: 'Wrapped-Bitcoin',
+    assetName: 'wrapped-bitcoin',
+    transferUnit: 1
+  },
+  USDA: {
+    ...FUNGIBLE_CONTRACT,
+    assetAddress: 'SP2C2YFP12AJZB4MABJBAJ55XECVS7E4PMMZ89YZR',
+    assetContractName: 'usda-token',
+    assetName: 'usda',
+    transferUnit: 1000000
+  },
+  NYC:{
+    ...FUNGIBLE_CONTRACT,
+    assetAddress: 'SP2H8PY27SEZ03MWRKS5XABZYQN17ETGQS3527SA5',
+    assetContractName: 'newyorkcitycoin-token',
+    assetName: 'newyorkcitycoin',
+    transferUnit: 1,
   },
   MIA: {
-    contractAddress: 'SP466FNC0P7JWTNM2R9T199QRZN1MYEDTAR0KP27',
-    contractName: 'miamicoin-token',
-    sendManyFunctionName: 'send-many',
+    ...FUNGIBLE_CONTRACT,
     assetAddress: 'SP466FNC0P7JWTNM2R9T199QRZN1MYEDTAR0KP27',
     assetContractName: 'miamicoin-token',
     assetName: 'miamicoin',
-    mapper: (recipient) =>{
-      return tupleCV({ to: standardPrincipalCV(recipient.address), amount: uintCV(parseInt(recipient.amount)), memo: noneCV() });
-    },
     transferUnit: 1
-  }
+  },
 }
 
 // export const CONTRACT_ADDRESS = testnet ? TEST_CONTRACT_ADDRESS : MAIN_CONTRACT_ADDRESS;
-export const CONTRACT = testnet? TEST_CONTRACT : MAIN_CONTRACT;
+export const CONTRACT = testnet ? TEST_CONTRACT : MAIN_CONTRACT;
 export const SEND_MANY_FUNCTION_NAME = 'send-many';
-export const NETWORK = testnet? new StacksTestnet() : new StacksMainnet();
+export const NETWORK = testnet ? new StacksTestnet() : new StacksMainnet();

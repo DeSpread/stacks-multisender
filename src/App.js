@@ -44,7 +44,6 @@ function App() {
   }
 
   useEffect(() => {
-    console.log("useEffect")
     transferData = [...recipients]
     setIsSignedIn(userSession.isUserSignedIn())
   })
@@ -118,8 +117,10 @@ function App() {
               label="Token"
             >
               <MenuItem value={'STX'} onChange={()=>setTargetToken('STX')}>STX</MenuItem>
+              <MenuItem value={'DIKO'} onChange={()=>setTargetToken('DIKO')}>DIKO</MenuItem>
+              <MenuItem value={'USDA'} onChange={()=>setTargetToken('USDA')}>USDA</MenuItem>
+              <MenuItem value={'NYC'} onChange={()=>setTargetToken('NYC')}>NYC</MenuItem>
               <MenuItem value={'MIA'} onChange={()=>setTargetToken('MIA')}>MIA</MenuItem>
-              <MenuItem value={'ABC'} onChange={()=>setTargetToken('ABC')}>ABC</MenuItem>
             </Select>
           </FormControl>
         </Box>

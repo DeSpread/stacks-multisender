@@ -3,12 +3,16 @@ import React, {useState} from "react";
 import {Box, Snackbar} from "@mui/material";
 import {CONTRACT, MAX_SEND_SIZE, NETWORK} from "../config/contract";
 import {
+  contractPrincipalCV,
   createAssetInfo,
   FungibleConditionCode,
   listCV,
   makeStandardFungiblePostCondition,
   makeStandardSTXPostCondition,
-  PostConditionMode, standardPrincipalCV, uintCV
+  PostConditionMode,
+  standardPrincipalCV,
+  tupleCV,
+  uintCV
 } from "@stacks/transactions";
 import {useConnect} from "@stacks/connect-react";
 import {useStxAddresses} from "../lib/hooks";
@@ -51,11 +55,9 @@ export function Send(props) {
 
   const sendAction = async (token, recipients, hasMemos) => {
     const contract = CONTRACT[token];
-    console.log(contract);
     const contractAddress = contract['contractAddress'];
     const contractName = contract['contractName'];
     const functionName = contract['sendManyFunctionName'];
-    const mapper = contract['mapper'];
     const transferUnit = contract['transferUnit']
 
     const chunk = recipients.length % MAX_SEND_SIZE === 0 ? recipients.length / MAX_SEND_SIZE : parseInt(recipients.length / MAX_SEND_SIZE) + 1;
@@ -74,19 +76,24 @@ export function Send(props) {
       let totalMount = chunkedRecipients.map(recipient => parseInt(recipient.amount))
         .reduce((prev, next) => prev + next) * transferUnit
 
-      let functionArgs = [
-        listCV(
-          chunkedRecipients.map(mapper)
-        ),
-      ];
-
       let postCondition
+      let functionArgs
       if (token === 'STX') {
         postCondition = makeStandardSTXPostCondition(
           ownerStxAddress,
           FungibleConditionCode.Equal,
           parseInt(totalMount)
         );
+        functionArgs = [
+          listCV(
+            chunkedRecipients.map((recipient) => {
+              return tupleCV({
+                to: standardPrincipalCV(recipient.address),
+                ustx: uintCV(parseInt(recipient.amount) * transferUnit)
+              })
+            })
+          )
+        ]
       } else {
         let assetAddress = contract['assetAddress']
         let assetContractName = contract['assetContractName']
@@ -101,6 +108,19 @@ export function Send(props) {
             assetName
           )
         )
+
+        functionArgs = [
+          listCV(
+            chunkedRecipients.map((recipient) => {
+              return tupleCV({
+                sender: standardPrincipalCV(ownerStxAddress),
+                recipient: standardPrincipalCV(recipient.address),
+                amount: uintCV(parseInt(recipient.amount) * transferUnit)
+              })
+            })
+          ),
+          contractPrincipalCV(contract['assetAddress'], contract['assetContractName'])
+        ]
       }
 
       await doContractCall({
