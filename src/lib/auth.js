@@ -27,10 +27,8 @@ export const useConnect = () => {
     onFinish,
     userSession, // usersession is already in state, provide it here
     redirectTo: '/',
-    manifestPath: '/manifest.json',
     appDetails: {
       name: 'Send Many',
-      icon: '/log.png',
     },
   };
 
