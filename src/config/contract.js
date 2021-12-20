@@ -53,6 +53,13 @@ const MAIN_CONTRACT = {
     assetName: 'usda',
     transferUnit: 1000000
   },
+  WELSHI: {
+    ...FUNGIBLE_CONTRACT,
+    assetAddress: 'SP3NE50GEXFG9SZGTT51P40X2CKYSZ5CC4ZTZ7A2G',
+    assetContractName: 'welshcorgicoin-token',
+    assetName: 'welshcorgicoin',
+    transferUnit: 1000000
+  },
   NYC:{
     ...FUNGIBLE_CONTRACT,
     assetAddress: 'SP2H8PY27SEZ03MWRKS5XABZYQN17ETGQS3527SA5',

@@ -82,7 +82,7 @@ function App() {
   }
 
   return (
-    <Container>
+    <Container sx={{height: "95vh", boxShadow: "1px 3px 15px grey", borderRadius: "10px"}}>
       <Box sx={{flexGrow: 1}}>
         <AppBar position="static">
           <Toolbar variant="dense">
@@ -119,6 +119,7 @@ function App() {
               <MenuItem value={'STX'} onChange={()=>setTargetToken('STX')}>STX</MenuItem>
               <MenuItem value={'DIKO'} onChange={()=>setTargetToken('DIKO')}>DIKO</MenuItem>
               <MenuItem value={'USDA'} onChange={()=>setTargetToken('USDA')}>USDA</MenuItem>
+              <MenuItem value={'WELSHI'} onChange={()=>setTargetToken('WELSHI')}>WELSHI</MenuItem>
               <MenuItem value={'NYC'} onChange={()=>setTargetToken('NYC')}>NYC</MenuItem>
               <MenuItem value={'MIA'} onChange={()=>setTargetToken('MIA')}>MIA</MenuItem>
             </Select>
