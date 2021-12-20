@@ -82,7 +82,7 @@ function App() {
   }
 
   return (
-    <Container sx={{height: "95vh", boxShadow: "1px 3px 15px grey", borderRadius: "10px"}}>
+    <Container sx={{backgroundColor: "white", marginTop: "20px", height: "95vh", boxShadow: "1px 3px 15px grey", borderRadius: "10px"}}>
       <Box sx={{flexGrow: 1}}>
         <AppBar position="static">
           <Toolbar variant="dense">
