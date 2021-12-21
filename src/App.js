@@ -82,7 +82,7 @@ function App() {
   }
 
   return (
-    <Container sx={{backgroundColor: "white", marginTop: "20px", height: "95vh", boxShadow: "1px 3px 15px grey", borderRadius: "10px"}}>
+    <Container sx={{backgroundColor: "white", marginTop: "20px", boxShadow: "1px 3px 15px grey", borderRadius: "10px"}}>
       <Box sx={{flexGrow: 1}}>
         <AppBar position="static">
           <Toolbar variant="dense">
@@ -119,7 +119,7 @@ function App() {
               <MenuItem value={'STX'} onChange={()=>setTargetToken('STX')}>STX</MenuItem>
               <MenuItem value={'DIKO'} onChange={()=>setTargetToken('DIKO')}>DIKO</MenuItem>
               <MenuItem value={'USDA'} onChange={()=>setTargetToken('USDA')}>USDA</MenuItem>
-              <MenuItem value={'WELSHI'} onChange={()=>setTargetToken('WELSHI')}>WELSHI</MenuItem>
+              <MenuItem value={'WELSH'} onChange={()=>setTargetToken('WELSH')}>WELSH</MenuItem>
               <MenuItem value={'NYC'} onChange={()=>setTargetToken('NYC')}>NYC</MenuItem>
               <MenuItem value={'MIA'} onChange={()=>setTargetToken('MIA')}>MIA</MenuItem>
             </Select>
@@ -179,11 +179,14 @@ function App() {
       </Box>
 
       <br/>
-      <br/>
       <Box sx={{textAlign: "center"}}>
         <Connect authOptions={authOptions}>
           <Send targetToken = {targetToken} isSignedIn={isSignedIn} recipients={recipients}/>
         </Connect>
+      </Box>
+      <Box sx={{display: "flex", marginTop: "30px", marginBottom: "30px", justifyContent: "center", paddingBottom: "15px"}}>
+        <img src="/twitter.png" height="30px"/>
+        <Typography sx={{fontSize: "13px", paddingTop: "3px", color: "#1d83ff"}}> <a href="https://twitter.com/NFP2021" style={{textDecoration: "none", color: "#1d83ff"}}>@NFP2021</a></Typography>
       </Box>
     </Container>
   );

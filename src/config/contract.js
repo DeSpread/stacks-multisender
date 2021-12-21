@@ -53,7 +53,7 @@ const MAIN_CONTRACT = {
     assetName: 'usda',
     transferUnit: 1000000
   },
-  WELSHI: {
+  WELSH: {
     ...FUNGIBLE_CONTRACT,
     assetAddress: 'SP3NE50GEXFG9SZGTT51P40X2CKYSZ5CC4ZTZ7A2G',
     assetContractName: 'welshcorgicoin-token',
