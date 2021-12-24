@@ -65,17 +65,21 @@ function App() {
     const {index, style} = props;
 
     return (
-      <div style={style} key={index}>
+      <div style={style} key={index + new Date()}>
         <Box sx={{textAlign: "center"}}>
-          <Button disabled sx={{marginRight: "30px"}}>#{index + 1}</Button>
+          <Button disabled sx={{marginRight: "30px", height: "50px"}}>#{index + 1}</Button>
           <TextField size="small" id="address" label="address" variant="standard"
-                     sx={{width: "600px", paddingRight: "40px"}}
+                     sx={{width: "600px", paddingRight: "40px", height: "50px"}}
                      defaultValue={recipients[index] ? recipients[index]['address'] : ''}
                      onChange={(event) => setTransferData(index, 'address', event)}/>
           <TextField size="small" id="amount" type="number" label="amount" variant="standard"
-                     sx={{paddingRight: "60px"}}
+                     sx={{paddingRight: "60px", height: "50px"}}
                      defaultValue={recipients[index] ? recipients[index]['amount'] : ''}
                      onChange={(event) => setTransferData(index, 'amount', event)}/>
+          <Button variant="text" sx={{height: "50px"}} onClick={() => {
+            let removed = recipients.filter((value, lIndex) => index !== lIndex)
+            setRecipients(removed)
+          }}>DELETE</Button>
         </Box>
       </div>
     );

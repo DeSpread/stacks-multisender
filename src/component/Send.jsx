@@ -19,24 +19,6 @@ import {useStxAddresses} from "../lib/hooks";
 import {userSessionState} from "../lib/auth"
 import {useAtomValue} from "jotai/utils";
 
-function checkRecipients(recipients) {
-  let check = true;
-  recipients.forEach((recipient) => {
-    if (!recipient['address'] || !recipient['amount']) {
-      check = false;
-      return false;
-    }
-    try {
-      standardPrincipalCV(recipient.address)
-      uintCV(recipient.amount)
-    } catch (e) {
-      check = false;
-      return false;
-    }
-  })
-  return check;
-}
-
 
 export function Send(props) {
   const userSession = useAtomValue(userSessionState);
@@ -50,6 +32,30 @@ export function Send(props) {
   const handleClose = () => {
     setState({...state, open: false});
   };
+
+  function checkRecipients(recipients) {
+    let check = true;
+    let message = '';
+    recipients.forEach((recipient) => {
+      if (!recipient['address'] || !recipient['amount']) {
+        check = false;
+        message = 'Address or amount cant be empty'
+        return false;
+      }
+      try {
+        standardPrincipalCV(recipient.address)
+        uintCV(recipient.amount)
+      } catch (e) {
+        check = false;
+        message = e.message
+        return false;
+      }
+    })
+    return {
+      check: check,
+      message: message
+    };
+  }
 
   const {message, open} = state
 
@@ -147,10 +153,11 @@ export function Send(props) {
   return (
     <Box sx={{textAlign: "center"}}>
       <Button variant="contained" sx={{width: '300px'}} onClick={() => {
-        if (!checkRecipients(props.recipients)) {
+        let checkResult = checkRecipients(props.recipients)
+        if (!checkResult.check) {
           setState({
             open: true,
-            message: 'Please Check Address or amount. Hint) Address Must start with s, 41 character'
+            message: 'Please Check Address or amount. Hint) ' + checkResult.message
           })
           return;
         }
