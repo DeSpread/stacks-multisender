@@ -29,7 +29,7 @@ export const useConnect = () => {
     redirectTo: '/',
     manifestPath: '/manifest.json',
     appDetails: {
-      name: 'Send Many',
+      name: 'Multi Sender',
       icon: '/logo192.png'
     },
   };
