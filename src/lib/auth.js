@@ -30,7 +30,7 @@ export const useConnect = () => {
     manifestPath: '/manifest.json',
     appDetails: {
       name: 'Multi Sender',
-      icon: '/logo192.png'
+      icon: 'https://btc.stx-multisender.com/logo192.png'
     },
   };
 
