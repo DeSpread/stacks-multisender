@@ -32,6 +32,13 @@ const MAIN_CONTRACT = {
     sendManyFunctionName: 'send-many',
     transferUnit: 1000000,
   },
+  ALEX: {
+    ...FUNGIBLE_CONTRACT,
+    assetAddress: 'SP3K8BC0PPEVCV7NZ6QSRWPQ2JE9E5B6N3PA0KBR9',
+    assetContractName: 'age000-governance-token',
+    assetName: 'alex',
+    transferUnit: 100000000
+  },
   DIKO: {
     ...FUNGIBLE_CONTRACT,
     assetAddress: 'SP2C2YFP12AJZB4MABJBAJ55XECVS7E4PMMZ89YZR',
