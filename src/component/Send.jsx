@@ -110,7 +110,7 @@ export function Send(props) {
         let assetName = contract['assetName']
         postCondition = makeStandardFungiblePostCondition(
           ownerStxAddress,
-          FungibleConditionCode.GreaterEqual,
+          FungibleConditionCode.Equal,
           parseInt(totalMount),
           createAssetInfo(
             assetAddress,
