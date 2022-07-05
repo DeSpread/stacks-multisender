@@ -97,7 +97,7 @@ export function Send(props) {
             chunkedRecipients.map((recipient) => {
               return tupleCV({
                 to: standardPrincipalCV(recipient.address),
-                ustx: uintCV(parseInt(parseFloat(recipient.amount)) * transferUnit)
+                ustx: uintCV(parseInt((parseFloat(recipient.amount) * transferUnit).toFixed()))
               })
             })
           )
@@ -120,10 +120,12 @@ export function Send(props) {
         functionArgs = [
           listCV(
             chunkedRecipients.map((recipient) => {
+              console.log('recipient.amount: ' + recipient.amount + ', ' + parseInt((parseFloat(recipient.amount) * transferUnit).toFixed()));
+
               return tupleCV({
                 sender: standardPrincipalCV(ownerStxAddress),
                 recipient: standardPrincipalCV(recipient.address),
-                amount: uintCV(parseInt(parseFloat(recipient.amount) * transferUnit))
+                amount: uintCV(parseInt((parseFloat(recipient.amount) * transferUnit).toFixed()))
               })
             })
           ),
