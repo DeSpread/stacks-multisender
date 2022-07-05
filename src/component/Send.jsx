@@ -95,7 +95,7 @@ export function Send(props) {
             chunkedRecipients.map((recipient) => {
               return tupleCV({
                 to: standardPrincipalCV(recipient.address),
-                ustx: uintCV(parseFloat(recipient.amount)) * transferUnit
+                ustx: uintCV(parseInt(parseFloat(recipient.amount)) * transferUnit)
               })
             })
           )
@@ -121,7 +121,7 @@ export function Send(props) {
               return tupleCV({
                 sender: standardPrincipalCV(ownerStxAddress),
                 recipient: standardPrincipalCV(recipient.address),
-                amount: uintCV(parseFloat(recipient.amount) * transferUnit)
+                amount: uintCV(parseInt(parseFloat(recipient.amount) * transferUnit))
               })
             })
           ),
