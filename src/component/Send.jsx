@@ -19,7 +19,6 @@ import {useStxAddresses} from "../lib/hooks";
 import {userSessionState} from "../lib/auth"
 import {useAtomValue} from "jotai/utils";
 
-
 export function Send(props) {
   const userSession = useAtomValue(userSessionState);
   const {doContractCall} = useConnect();
@@ -81,10 +80,9 @@ export function Send(props) {
       let chunkedRecipients = chunked[i]
 
       let totalMount = chunkedRecipients.map(recipient => parseFloat(recipient.amount))
-        .reduce((prev, next) => prev + next)
+        .reduce((prev, next) => prev + next) * transferUnit
 
-      totalMount = (totalMount * transferUnit).toFixed();
-      console.log('totalMount: ' + totalMount);
+      totalMount = parseInt(totalMount.toFixed());
 
       let postCondition
       let functionArgs
@@ -92,7 +90,7 @@ export function Send(props) {
         postCondition = makeStandardSTXPostCondition(
           ownerStxAddress,
           FungibleConditionCode.Equal,
-          parseInt(totalMount)
+          totalMount
         );
         functionArgs = [
           listCV(
@@ -110,8 +108,8 @@ export function Send(props) {
         let assetName = contract['assetName']
         postCondition = makeStandardFungiblePostCondition(
           ownerStxAddress,
-          FungibleConditionCode.Equal,
-          parseInt(totalMount),
+          FungibleConditionCode.GreaterEqual,
+          totalMount,
           createAssetInfo(
             assetAddress,
             assetContractName,
