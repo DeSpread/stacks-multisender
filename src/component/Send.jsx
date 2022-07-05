@@ -37,6 +37,7 @@ export function Send(props) {
     let check = true;
     let message = '';
     recipients.forEach((recipient) => {
+      console.log(recipient);
       if (!recipient['address'] || !recipient['amount']) {
         check = false;
         message = 'Address or amount cant be empty'
@@ -80,7 +81,10 @@ export function Send(props) {
       let chunkedRecipients = chunked[i]
 
       let totalMount = chunkedRecipients.map(recipient => parseFloat(recipient.amount))
-        .reduce((prev, next) => prev + next) * transferUnit
+        .reduce((prev, next) => prev + next)
+
+      totalMount = (totalMount * transferUnit).toFixed();
+      console.log('totalMount: ' + totalMount);
 
       let postCondition
       let functionArgs
@@ -88,7 +92,7 @@ export function Send(props) {
         postCondition = makeStandardSTXPostCondition(
           ownerStxAddress,
           FungibleConditionCode.Equal,
-          parseFloat(totalMount)
+          parseInt(totalMount)
         );
         functionArgs = [
           listCV(
