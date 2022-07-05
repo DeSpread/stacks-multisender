@@ -51,7 +51,7 @@ const MAIN_CONTRACT = {
     assetAddress: 'SP3DX3H4FEYZJZ586MFBS25ZW3HZDMEW92260R2PR',
     assetContractName: 'Wrapped-Bitcoin',
     assetName: 'wrapped-bitcoin',
-    transferUnit: 1
+    transferUnit: 100000000
   },
   USDA: {
     ...FUNGIBLE_CONTRACT,

@@ -44,7 +44,7 @@ export function Send(props) {
       }
       try {
         standardPrincipalCV(recipient.address)
-        uintCV(recipient.amount)
+        // uintCV(recipient.amount) // uint 검사 스킵
       } catch (e) {
         check = false;
         message = e.message
@@ -79,7 +79,7 @@ export function Send(props) {
     for (let i = 0; i < chunked.length; i++) {
       let chunkedRecipients = chunked[i]
 
-      let totalMount = chunkedRecipients.map(recipient => parseInt(recipient.amount))
+      let totalMount = chunkedRecipients.map(recipient => parseFloat(recipient.amount))
         .reduce((prev, next) => prev + next) * transferUnit
 
       let postCondition
@@ -88,14 +88,14 @@ export function Send(props) {
         postCondition = makeStandardSTXPostCondition(
           ownerStxAddress,
           FungibleConditionCode.Equal,
-          parseInt(totalMount)
+          parseFloat(totalMount)
         );
         functionArgs = [
           listCV(
             chunkedRecipients.map((recipient) => {
               return tupleCV({
                 to: standardPrincipalCV(recipient.address),
-                ustx: uintCV(parseInt(recipient.amount) * transferUnit)
+                ustx: uintCV(parseFloat(recipient.amount)) * transferUnit
               })
             })
           )
@@ -121,7 +121,7 @@ export function Send(props) {
               return tupleCV({
                 sender: standardPrincipalCV(ownerStxAddress),
                 recipient: standardPrincipalCV(recipient.address),
-                amount: uintCV(parseInt(recipient.amount) * transferUnit)
+                amount: uintCV(parseFloat(recipient.amount) * transferUnit)
               })
             })
           ),

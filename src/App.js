@@ -121,6 +121,7 @@ function App() {
               label="Token"
             >
               <MenuItem value={'STX'} onChange={()=>setTargetToken('STX')}>STX</MenuItem>
+              <MenuItem value={'XBTC'} onChange={()=>setTargetToken('XBTC')}>XBTC</MenuItem>
               <MenuItem value={'ALEX'} onChange={()=>setTargetToken('ALEX')}>ALEX</MenuItem>
               <MenuItem value={'DIKO'} onChange={()=>setTargetToken('DIKO')}>DIKO</MenuItem>
               <MenuItem value={'USDA'} onChange={()=>setTargetToken('USDA')}>USDA</MenuItem>
