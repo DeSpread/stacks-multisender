@@ -112,7 +112,6 @@ export function Send(props) {
           ownerStxAddress,
           FungibleConditionCode.Equal,
           parseInt(totalMount),
-          FungibleConditionCode.GreaterEqual,
           createAssetInfo(
             assetAddress,
             assetContractName,
