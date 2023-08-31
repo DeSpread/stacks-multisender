@@ -81,6 +81,13 @@ const MAIN_CONTRACT = {
     assetName: 'miamicoin',
     transferUnit: 1
   },
+  SUSDT: {
+    ...FUNGIBLE_CONTRACT,
+    assetAddress: 'SP3K8BC0PPEVCV7NZ6QSRWPQ2JE9E5B6N3PA0KBR9',
+    assetContractName: 'age000-governance-token',
+    assetName: 'alex',
+    transferUnit: 100000000
+  },
 }
 
 // export const CONTRACT_ADDRESS = testnet ? TEST_CONTRACT_ADDRESS : MAIN_CONTRACT_ADDRESS;
