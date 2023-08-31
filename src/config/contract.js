@@ -84,8 +84,8 @@ const MAIN_CONTRACT = {
   SUSDT: {
     ...FUNGIBLE_CONTRACT,
     assetAddress: 'SP3K8BC0PPEVCV7NZ6QSRWPQ2JE9E5B6N3PA0KBR9',
-    assetContractName: 'age000-governance-token',
-    assetName: 'alex',
+    assetContractName: 'token-susdt',
+    assetName: 'sUSDT',
     transferUnit: 100000000
   },
 }
